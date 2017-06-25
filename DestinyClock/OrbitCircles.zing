@@ -1,0 +1,69 @@
+Item as root {
+    
+    property Color borderColor: #585064
+    property Float borderWidth: 2
+    
+    property Float offSet
+    
+    property Float startDegrees: 360 + offSet
+    startDegrees@AntiClockwise: 0 + offSet
+    property Float endDegrees: 0 + offSet
+    endDegrees@AntiClockwise:360 + offSet
+    
+    
+    
+    property Direction direction: Direction.Clockwise
+    
+    enum Direction {
+        case Clockwise
+        case AntiClockwise
+    }
+    
+    property Float size: 100
+    width: mainCircle.width
+    height: mainCircle.height
+    
+    Ellipse as mainCircle{
+        width: root.size
+        height: width
+        color: #transparent
+        border.width: root.borderWidth
+        border.color: root.borderColor
+    }
+    Item as rotationAnchor{
+        anchor center
+        rotation: -189
+        Item {
+            width: root.size/2
+            Ellipse {
+                width: root.size*0.47
+                height: width
+                anchor centerY
+                anchor right = parent.right
+                color: #transparent
+                border.width: root.borderWidth
+                border.color: root.borderColor
+            }
+            Ellipse {
+                width: root.size*0.27
+                height: width
+                anchor centerY
+                anchor right = parent.right
+                color: #transparent
+                border.width: root.borderWidth
+                border.color: root.borderColor
+            }
+        }
+    }
+    
+}
+
+Animation.Tween {
+    running: true
+    loops: -1
+    target: rotationAnchor.rotation
+    from: root.startDegrees
+    to: root.endDegrees
+    duration: 60000
+    
+}

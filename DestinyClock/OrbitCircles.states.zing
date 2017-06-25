@@ -1,0 +1,22 @@
+
+System.Argon.Machine {
+    System.Argon.State {
+        name: "AntiClockwise"
+        y: 0
+        x: 0
+        id: 1
+        transitions: [
+            System.Argon.Transition {
+                autoReverse: true
+                condition: ``root.direction == OrbitCircles.Direction.Clockwise``
+                to: 2
+            }
+]
+    }
+     System.Argon.State {
+         name: "Clockwise"
+         y: 204.277
+         x: 0
+         id: 2
+     }
+}

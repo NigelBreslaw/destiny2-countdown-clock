@@ -1,0 +1,117 @@
+import App as app
+
+Item as root {
+    property Float size: 400
+    width: root.size
+    height: width
+    
+    property Float sizeConstant: root.width
+    // sizeConstant@Landscape: root.height
+    
+    property Float gap: root.sizeConstant* 0.07
+    property Color penColor: #677677
+    property Int spokes: 72
+    on spokes changed {
+        drawSpokes.stop()
+        counter = 0
+        holder.clearChildren()
+        drawSpokes.start()
+    }
+    property Int counter
+    alias drawSpokes
+    // opacity: 0.2
+    
+    Item as holder{
+        anchor center
+    }
+    
+    Ellipse as e{
+        width: root.size//root.sizeConstant-root.gap*4
+        height: width
+        color: #transparent
+        border.width: 1.8
+        border.color: root.penColor
+        opacity: 0.9
+        anchor center
+        Ellipse {
+            anchor center
+            width: parent.width-(root.gap*2)
+            height: width
+            color: #transparent
+            border.width: 1.8
+            border.color: root.penColor
+        }
+    }
+    
+    
+}
+
+Animation.Sequential as drawSpokes{
+    running: true
+    loops: -1
+    Animation.Action {
+        on animate {
+            
+            var l = new Line {
+            }
+            l.rotation = (360/root.spokes)*root.counter
+            l.setContainer(holder)
+            root.counter++
+            if root.counter == root.spokes {
+                drawSpokes.stop()
+            }
+            
+        }
+    }
+    Animation.Delay {
+        duration: 50
+        durationVariance: 10
+    }
+}
+
+element Line {
+    Item as lRoot{
+        width: 1
+        height: e.height/2
+        transformOrigin: Item.TransformOrigin.Bottom
+        opacity: 0
+        y: -height
+        Rectangle {
+            width: 1
+            height: root.gap
+            color: root.penColor
+        }
+        Rectangle as s{
+            y: -height
+            width: 1
+            height: root.gap*1.4
+            color: root.penColor 
+            gradient: Gradient.Linear {
+                Gradient.PixelStop { 
+                    stop: 0
+                    color: Color.fade(root.penColor, 0.1)
+                }
+                Gradient.PixelStop { 
+                    stop: s.height
+                    color: root.penColor
+                }
+            }
+        }
+    }
+    on start {
+        showLine.start()
+    }
+    Animation.Sequential as showLine {
+        Animation.Tween{
+            target: lRoot.opacity
+            to: 1
+            duration: 500
+            easing: Easing.SineOut {}
+        }
+        // Animation.Tween {
+        //     target: s.height
+        //     to: root.gap*2.1
+        // }
+    }
+    
+}

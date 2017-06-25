@@ -1,0 +1,120 @@
+Rectangle as root {
+    color: #black
+
+    property Color textDefault: #white
+    property Bool debug: false
+    property Float msToD2PS4Beta
+    property Int displaySeconds: Int(Math.floor(msToD2PS4Beta%60))
+    property Int displayMinutes: Int(Math.floor(msToD2PS4Beta/60)%60)
+    property Int displayHours: Int(Math.floor(msToD2PS4Beta/3600)%24)
+    property String displayDays: String(Math.floor(msToD2PS4Beta/86400))
+    
+    
+    property Float sideCircleSize: 400
+    property Float midCircleSize: 450
+    
+        Image {
+            visible: root.debug
+            scale: root.width/imageWidth
+            transformOrigin: Item.TransformOrigin.TopLeft
+            source: "images/template.png"
+        }
+        Row {
+            y: 138
+            x: 182
+            spacing: 24
+            
+            TextStyles.Header {
+
+                text: "D"
+                color: root.textDefault
+                size: 33
+            } 
+            TextStyles.Header {
+
+                text: "E"
+                color: root.textDefault
+                size: 33
+            } 
+            TextStyles.Header {
+
+                text: "S"
+                color: root.textDefault
+                size: 33
+            } 
+            TextStyles.Header {
+
+                text: "T"
+                color: root.textDefault
+                size: 33
+            } 
+            TextStyles.Header {
+
+                text: "I"
+                color: root.textDefault
+                size: 33
+            } 
+            TextStyles.Header {
+
+                text: "N"
+                color: root.textDefault
+                size: 33
+            } 
+            TextStyles.Header {
+
+                text: "Y"
+                color: root.textDefault
+                size: 33
+            } 
+        }
+        
+        TextStyles.Bold {
+            visible: true
+            color: root.textDefault
+            text: root.displayDays+
+            ":"+root.formatNumber(root.displayHours)+
+            ":"+root.formatNumber(root.displayMinutes)+
+            ":"+root.formatNumber(root.displaySeconds)
+            anchor centerX
+            y: 394
+            size: 108
+        }
+        Row {
+            anchor centerX
+            y: 122
+            OrbitCircles {
+                anchor centerY
+                size: root.sideCircleSize
+            }
+            DestinyCircle {
+                
+            }
+            OrbitCircles {
+                anchor centerY
+                direction: OrbitCircles.Direction.Clockwise
+                size: root.sideCircleSize
+                offSet: 180
+            }
+        }
+        
+        function formatNumber(Int rawNumber)->String {
+            if rawNumber > 9 {
+                return String(rawNumber)
+            } else {
+                return "0"+rawNumber
+            }
+        }
+    
+}
+
+Animation.Custom {
+    running: true
+    on animate {
+        root.msToD2PS4Beta = DateTime(2017,6, 18,17,0,0) - DateTime.now()//.toUTC()
+    }
+}
+on start {
+    System.log(DateTime.now().toUTC())
+    System.log(DateTime(2017,6, 18,17,0,0))
+    System.log(DateTime.parseISOString("2017-07-18T16:00:00.000Z"))
+}
