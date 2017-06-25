@@ -1,7 +1,7 @@
 Item as root {
     
-    property Color borderColor: #585064
-    property Float borderWidth: 2
+    property Color borderColor: #white
+    property Float borderWidth: 2.2
     
     property Float offSet
     

@@ -1,0 +1,22 @@
+
+System.Argon.Machine {
+    System.Argon.State {
+        name: "Portrait"
+        y: 0
+        x: 0
+        id: 1
+        transitions: [
+            System.Argon.Transition {
+                autoReverse: true
+                condition: ``root.width > root.height``
+                to: 2
+            }
+]
+    }
+     System.Argon.State {
+         name: "Landscape"
+         y: 172.866
+         x: 0
+         id: 2
+     }
+}

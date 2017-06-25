@@ -1,0 +1,31 @@
+
+System.Argon.Machine {
+    System.Argon.State {
+        y: 0
+        x: 0
+        id: 1
+        transitions: [
+            System.Argon.Transition {
+                behaviors: [1]
+                autoReverse: true
+                condition: ``root.status == Image.Status.Ready``
+                to: 2
+            }
+]
+    }
+     System.Argon.State {
+         name: "Ready"
+         y: 180.863
+         x: 0
+         id: 2
+     }
+}
+behavior on opacity {
+    duration: 250
+    System.Argon.name: "Fade"
+    System.Argon.id: 1
+    easing: Easing.Smooth {
+        influenceOut: 0.5
+        influenceIn: 0.5
+    }
+}

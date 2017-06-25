@@ -1,0 +1,21 @@
+Item as root {
+    alias size: tex.size
+    alias color: tex.color
+    alias text: tex.text
+    alias labelText: label.text
+    width: 138 * (size/108)
+    height: 136 * (size/108)
+    TextStyles.Bold as tex {
+        size: 108
+        color: #white
+        text: "00"
+    }
+    TextStyles.Fine as label{
+        size: 27
+        color: #white
+        anchor centerX
+        y: parent.height*0.9
+        text: "days"
+    }
+    
+}

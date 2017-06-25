@@ -1,75 +1,307 @@
 Rectangle as root {
     color: #black
-
+    
     property Color textDefault: #white
-    property Bool debug: false
+    property Bool debug: true
     property Float msToD2PS4Beta
     property Int displaySeconds: Int(Math.floor(msToD2PS4Beta%60))
     property Int displayMinutes: Int(Math.floor(msToD2PS4Beta/60)%60)
     property Int displayHours: Int(Math.floor(msToD2PS4Beta/3600)%24)
     property String displayDays: String(Math.floor(msToD2PS4Beta/86400))
+    property Float logoSize: 58
     
-    
-    property Float sideCircleSize: 400
+    property Float sideCircleSize: 484
     property Float midCircleSize: 450
     
-        Image {
-            visible: root.debug
-            scale: root.width/imageWidth
-            transformOrigin: Item.TransformOrigin.TopLeft
-            source: "images/template.png"
+    Image {
+        visible: root.debug
+        scale: root.width/imageWidth
+        transformOrigin: Item.TransformOrigin.TopLeft
+        // source: "images/template.png"
+        
+        
+        
+    }
+    Rectangle as background{
+        height: parent.height
+        width: parent.width
+        visible: true
+        gradient: Gradient.Linear {
+            Gradient.PixelStop { 
+                stop: 0
+                color: #5A3143
+            }
+            Gradient.PixelStop { 
+                stop: background.height*0.1
+                color: #2A3849
+            }
+            Gradient.PixelStop { 
+                stop: background.height*0.5
+                color: #213A4E
+            }
+            Gradient.PixelStop { 
+                stop: background.height*0.6
+                color: #213A4E
+            }
+            Gradient.PixelStop { 
+                stop: background.height*0.79
+                color: #556877
+            }
+            Gradient.PixelStop { 
+                stop: background.height*0.9
+                color: #ACA0A7
+            }
+            Gradient.PixelStop { 
+                stop: background.height
+                color: #BDAEB4
+            }
+        }
+        
+        
+    }
+    TextStyles.Fine {
+        anchor bottom
+        anchor left
+        text: " build 001"
+        color: #white
+        size: 11
+    }
+    Item {
+        width: 1280
+        height: 720
+        anchor center
+        scale: root.height/height
+        scale@Portrait: root.width/width
+        
+        
+        
+        
+        TextStyles.Bold {
+            font: "Neue Haas Grotesk Display Pro 65 Medium"
+            y: 239
+            x: 918
+            text: "2"
+            size: 74
+            color: #white
+        }
+        ImagePlus {
+            y: 160
+            x: 723
+            source: "images/bungie-destiny-logo.png"
+            scale: 0.25
         }
         Row {
-            y: 138
-            x: 182
-            spacing: 24
+            anchor centerX
+            y: 122
+            visible: true
+            opacity: 0.1
+            OrbitCircles {
+                // anchor centerY
+                size: root.sideCircleSize
+            }
+            DestinyCircle {
+                size: 439
+                anchor centerY
+                Item {
+                    anchor center
+                    Ellipse as e1{
+                        width: 358
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor centerY
+                    }
+                    Ellipse {
+                        width: e1.width
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor centerY
+                        anchor right = parent.left
+                    }
+                    Ellipse as e2{
+                        width: 597
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor centerY
+                    }
+                    Ellipse {
+                        width: e2.width
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor centerY
+                        anchor right = parent.left
+                    }
+                    Ellipse as e3{
+                        width: 1242
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor centerY
+                    }
+                    Ellipse {
+                        width: e3.width
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor centerY
+                        anchor right = parent.left
+                    }
+                    Ellipse as e4{
+                        width: 1354
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor centerY
+                    }
+                    Ellipse {
+                        width: e4.width
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor centerY
+                        anchor right = parent.left
+                    }
+                    Ellipse as e5{
+                        width: 1158
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor centerX
+                    }
+                    Ellipse {
+                        width: e5.width
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor centerX
+                        anchor bottom = parent.top
+                    }
+                    Ellipse {
+                        width: 1197
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor center
+                    }
+                    Ellipse {
+                        width: 1263
+                        height: width
+                        color: #transparent
+                        border.width: 2.2
+                        border.color: #white
+                        anchor center
+                    }
+                }
+            }
+            OrbitCircles {
+                
+                direction: OrbitCircles.Direction.Clockwise
+                size: root.sideCircleSize
+                offSet: 180
+            }
+        }
+        Row {
+            y: 240
+            x: 317
+            spacing: 41.1
             
             TextStyles.Header {
-
+                
                 text: "D"
                 color: root.textDefault
-                size: 33
+                size: root.logoSize
             } 
             TextStyles.Header {
-
+                
                 text: "E"
                 color: root.textDefault
-                size: 33
+                size: root.logoSize
             } 
             TextStyles.Header {
-
+                
                 text: "S"
                 color: root.textDefault
-                size: 33
+                size: root.logoSize
             } 
             TextStyles.Header {
-
+                
                 text: "T"
                 color: root.textDefault
-                size: 33
+                size: root.logoSize
             } 
             TextStyles.Header {
-
+                
                 text: "I"
                 color: root.textDefault
-                size: 33
+                size: root.logoSize
             } 
             TextStyles.Header {
-
+                
                 text: "N"
                 color: root.textDefault
-                size: 33
+                size: root.logoSize
             } 
             TextStyles.Header {
-
+                
                 text: "Y"
                 color: root.textDefault
-                size: 33
+                size: root.logoSize
             } 
         }
         
+        Row {
+            spacing: 12
+            anchor centerX
+            y: 394 
+            CounterDisplay {
+                text: root.displayDays
+                labelText: "days"
+            }
+            TextStyles.Bold {
+                text: ":"
+                color: #white
+                size: 108
+            }
+            CounterDisplay {
+                text: root.formatNumber(root.displayHours)
+                labelText: "hours"
+            }
+            TextStyles.Bold {
+                text: ":"
+                color: #white
+                size: 108
+                
+            }
+            CounterDisplay {
+                text: root.formatNumber(root.displayMinutes)
+                labelText: "minutes"
+            }
+            TextStyles.Bold {
+                text: ":"
+                color: #white
+                size: 108
+            }
+            CounterDisplay {
+                text: root.formatNumber(root.displaySeconds)
+                labelText: "seconds"
+            }
+        }
         TextStyles.Bold {
-            visible: true
+            visible: false
             color: root.textDefault
             text: root.displayDays+
             ":"+root.formatNumber(root.displayHours)+
@@ -79,31 +311,14 @@ Rectangle as root {
             y: 394
             size: 108
         }
-        Row {
-            anchor centerX
-            y: 122
-            OrbitCircles {
-                anchor centerY
-                size: root.sideCircleSize
-            }
-            DestinyCircle {
-                
-            }
-            OrbitCircles {
-                anchor centerY
-                direction: OrbitCircles.Direction.Clockwise
-                size: root.sideCircleSize
-                offSet: 180
-            }
+    }
+    function formatNumber(Int rawNumber)->String {
+        if rawNumber > 9 {
+            return String(rawNumber)
+        } else {
+            return "0"+rawNumber
         }
-        
-        function formatNumber(Int rawNumber)->String {
-            if rawNumber > 9 {
-                return String(rawNumber)
-            } else {
-                return "0"+rawNumber
-            }
-        }
+    }
     
 }
 
@@ -114,7 +329,5 @@ Animation.Custom {
     }
 }
 on start {
-    System.log(DateTime.now().toUTC())
-    System.log(DateTime(2017,6, 18,17,0,0))
-    System.log(DateTime.parseISOString("2017-07-18T16:00:00.000Z"))
+    
 }

@@ -1,0 +1,4 @@
+Image as root {
+    opacity: 0
+    opacity@Ready: 1
+}

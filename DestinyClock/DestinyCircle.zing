@@ -9,7 +9,7 @@ Item as root {
     // sizeConstant@Landscape: root.height
     
     property Float gap: root.sizeConstant* 0.07
-    property Color penColor: #677677
+    property Color penColor: #white
     property Int spokes: 72
     on spokes changed {
         drawSpokes.stop()
