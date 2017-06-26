@@ -1,0 +1,54 @@
+Item as root {
+    width: 1500
+    property Float startX
+    opacity: 0.05
+    Item {
+        height: 100
+        y: -5
+        width: 119
+        x: 168
+        
+        Image {
+            height: 384
+            y: 28
+            width: 350
+            x: -77
+            source: "images/cloud1.png"
+        }
+    }
+    Image {
+        height: 288
+        y: 53
+        width: 575
+        x: 601
+        source: "images/cloud5.png"
+        Image {
+            y: -12
+            x: -214
+            source: "images/cloud3.png"
+        }
+    }
+    Image {
+        height: 448
+        y: -14
+        width: 465
+        x: 1082
+        source: "images/cloud2.png"
+    }
+    
+}
+
+Animation.Sequential {
+    running: true
+    Animation.Tween {
+        target: root.x
+        from: root.startX
+        to: root.startX + 3000
+        duration: 500000
+    }
+    Animation.Action {
+        on animate {
+            root.setContainer(null)
+        }
+    }
+}

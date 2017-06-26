@@ -1,0 +1,92 @@
+Item as root {
+    width: 1500
+    property Float startX
+    opacity: 0.1
+    Item {
+        height: 100
+        y: -5
+        width: 119
+        x: 168
+        
+        Image {
+            y: 18
+            x: -11
+            source: "images/cloud1.png"
+            Image {
+                y: -14
+                x: -49
+                source: "images/cloud4.png"
+                Image {
+                    y: 94
+                    x: -272
+                    source: "images/cloud5.png"
+                }
+            }
+        }
+        Image {
+            y: 22
+            x: 199
+            source: "images/cloud2.png"
+        }
+        Image {
+            y: -3
+            x: 428
+            source: "images/cloud3.png"
+            Image {
+                anchor right
+                height: 408
+                y: 37
+                width: 408
+                source: "images/cloud4.png"
+            }
+            Image {
+                height: 462
+                y: -9
+                width: 462
+                x: 550
+                source: "images/cloud3.png"
+            }
+            Image {
+                y: -12
+                x: 267
+                source: "images/cloud4.png"
+            }
+            Image {
+                height: 268.692
+                y: 22.008
+                width: 614
+                x: 130
+                source: "images/cloud5.png"
+            }
+            Image {
+                height: 311
+                y: 116.2
+                width: 311
+                x: 420
+                source: "images/cloud1.png"
+            }
+            Image {
+                y: 90.7
+                x: 90.3
+                scale: 0.7
+                source: "images/cloud2.png"
+            }
+        }
+    }
+    
+}
+
+Animation.Sequential {
+    running: true
+    Animation.Tween {
+        target: root.x
+        from: root.startX
+        to: root.startX + 3000
+        duration: 260000
+    }
+    Animation.Action {
+        on animate {
+            root.setContainer(null)
+        }
+    }
+}

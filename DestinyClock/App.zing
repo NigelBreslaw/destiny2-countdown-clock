@@ -66,15 +66,23 @@ Rectangle as root {
         color: #white
         size: 11
     }
-    Item {
+    Item as content{
         width: 1280
         height: 720
         anchor center
         scale: root.height/height
         scale@Portrait: root.width/width
         
+        Item as cloudBack {}
         
+        Item as cloudFront {}
         
+        // Clouds {
+        //     opacity: 0.3
+        //     x: 850
+        //     y: 466
+        //     
+        // }
         
         TextStyles.Bold {
             font: "Neue Haas Grotesk Display Pro 65 Medium"
@@ -320,6 +328,9 @@ Rectangle as root {
         }
     }
     
+    property Int cloudMoveTime: 80000
+    property Float cloudBackY: 446
+    
 }
 
 Animation.Custom {
@@ -328,6 +339,58 @@ Animation.Custom {
         root.msToD2PS4Beta = DateTime(2017,6, 18,17,0,0) - DateTime.now()//.toUTC()
     }
 }
+
+Animation.Sequential {
+    loops: -1
+    running: true
+    Animation.Delay {
+        duration: 130000
+    }
+    Animation.Action {
+        on animate {
+            var c = new Clouds {
+                startX: -1400
+                y: 525
+            }
+            c.setContainer(cloudFront)
+        }
+    }
+}
+
+Animation.Sequential {
+    loops: -1
+    running: true
+    Animation.Delay {
+        duration: 180000
+    }
+    Animation.Action {
+        on animate {
+            var c = new Clouds2 {
+                startX: -1400
+                y: root.cloudBackY
+            }
+            c.setContainer(cloudBack)
+        }
+    }
+}
+
 on start {
-    
+    var c1 = new Clouds {
+        y: 525
+    }
+    c1.setContainer(cloudFront)
+    var c2 = new Clouds {
+        startX: -1400
+        y: 525
+    }
+    c2.setContainer(cloudFront)
+    var c3 = new Clouds2 {
+        y: root.cloudBackY
+    }
+    c3.setContainer(cloudBack)
+    var c4 = new Clouds2 {
+        startX: -1500
+        y: root.cloudBackY
+    }
+    c4.setContainer(cloudBack)
 }
